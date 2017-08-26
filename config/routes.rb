@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :time_slots
+
   devise_for :users
   resources :food_items
 

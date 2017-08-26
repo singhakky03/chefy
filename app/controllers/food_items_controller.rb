@@ -1,7 +1,7 @@
 class FoodItemsController < ApplicationController
 	
 	def index
-		@food_items = FoodItems.all
+		@food_items = FoodItem.all
 	end
 
 	def show
