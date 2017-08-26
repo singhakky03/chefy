@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826210212) do
-
-  create_table "food_item_time_slots", force: :cascade do |t|
-    t.integer  "food_item_id", limit: 4
-    t.integer  "time_slot_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20170826222151) do
 
   create_table "food_items", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -33,9 +26,12 @@ ActiveRecord::Schema.define(version: 20170826210212) do
   create_table "time_slots", force: :cascade do |t|
     t.datetime "from"
     t.datetime "to"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "food_item_id", limit: 4
   end
+
+  add_index "time_slots", ["food_item_id"], name: "index_time_slots_on_food_item_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
