@@ -1,0 +1,44 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Chefy
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container{:style => "margin-top:50px;"}
+      .row.logo-panel
+        .col-md-4.col-xs-12
+          %a{:href => "/"}
+            %img{:alt => "", :src => "http://placehold.it/210x75&text=volvoline"}/
+        .col-md-4.hidden-xs.text-center.text-muted
+          %h2
+            %strong 8-800-499-50-50
+            %h3 8-800-945-05-05
+        .col-md-4.col-xs-12
+          .login-panel.pull-right
+            %ul.list-inline
+              %li
+                %a{:href => "/cart"}
+                  %i.fa.fa-2x.fa-shopping-cart
+                %lavel#cart-badge.badge.badge-warning 4
+              / %li
+              /   %a{:href => "/login"} Вход
+              / %li
+              /   %a{:href => "/register"} Регистрация
+      = yield
+
+
+/ %p.navbar-text.pull-right
+/   - if user_signed_in?
+/     Logged in as
+/     = succeed "." do
+/       %strong= current_user.email
+/     = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+/     |
+/     \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+/   - else
+/     = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+/     |
+/     \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}

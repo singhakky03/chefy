@@ -1,0 +1,27 @@
+//.container{:style => "margin-top:50px;"}
+.row
+  - @food_items.each do |food_item|
+    .col-xs-12.col-sm-6.col-md-3
+      .col-item
+        .post-img-content
+          %img.img-responsive{:src => "http://placehold.it/350x260"}/
+          / %span.post-title
+          /   %b Perfumes
+          /   %br/
+          /   %b Clássico
+          / %span.round-tag -15%
+        .info
+          .row
+            .price.col-md-6
+              %h5 food_item.name
+              %h5.price-text-color food_item.price
+            .rating.hidden-sm.col-md-6
+              %h5.price-text-color 14.99€
+          .separator.clear-left
+            %p.btn-add
+              %i.fa.fa-shopping-cart
+              %a.hidden-sm{:href => "#"} Add to cart
+            %p.btn-details
+              %i.fa.fa-list
+              %a.hidden-sm{:href => "#"} More details
+          .clearfix
