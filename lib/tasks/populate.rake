@@ -4,12 +4,12 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [FoodItem].each(&:delete_all)
+    [FoodItem, TimeSlot, FoodItemTimeSlot].each(&:delete_all)
     
-    # Category.populate 20 do |category|
+    FoodItemTimeSlot.populate 100 do |food_time|
       # category.name = Populator.words(1..3).titleize
       FoodItem.populate 10..100 do |fooditem|
-        # product.category_id = category.id
+        fooditem.id = food_time.food_item_id
         fooditem.name = Populator.words(1..5).titleize
         fooditem.description = Populator.sentences(2..10)
         fooditem.price = [4.99, 19.95, 100]
@@ -17,9 +17,15 @@ namespace :db do
         fooditem.rating = [3,4,2,4,5,1,3,3]
         fooditem.created_at = 2.years.ago..Time.now
       end
-    #end
+
+      TimeSlot.populate 10..100 do |time_s|
+        time_s.id = food_time.time_slot_id
+        time_s.from = Faker::Time.between(DateTime.now - 10, DateTime.now)
+        time_s.to = Faker::Time.forward(5, :morning)
+      end
+    end
     
-    # Person.populate 100 do |person|
+    # FoodItemTimeSlot.populate 100 do |food_time|
     #   person.name    = Faker::Name.name
     #   person.company = Faker::Company.name
     #   person.email   = Faker::Internet.email
