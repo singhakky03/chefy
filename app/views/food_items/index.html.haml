@@ -4,11 +4,6 @@
       .col-item
         .post-img-content
           %img.img-responsive{:src => "http://placehold.it/350x260"}/
-          %span.post-title
-            %b Perfumes
-            %br/
-            %b Clássico
-          %span.round-tag -15%
         .info
           .row
             .price.col-md-6
@@ -17,10 +12,10 @@
             .rating.hidden-sm.col-md-6
               %h5.price-text-color #{food_item.rating}
           .separator.clear-left
-            %p.btn-add
-              %i.fa.fa-shopping-cart
-              %a.hidden-sm{:href => "#"} Add to cart
-            %p.btn-details
-              %i.fa.fa-list
-              %a.hidden-sm{:href => "#"} More details
+            = form_for @order_item, remote: true do |f|
+              .input-group
+                = f.number_field :quantity, value: 1, class: "form-control", min: 1
+                .input-group-btn
+                  = f.hidden_field :food_item_id, value: food_item.id
+                  = f.submit "Add to Cart", class: "btn btn-primary"
           .clearfix

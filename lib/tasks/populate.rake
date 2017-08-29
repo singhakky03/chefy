@@ -26,6 +26,7 @@ namespace :db do
           #fooditem.id = food_time.food_item_id
           fooditem.name = Populator.words(1..5).titleize
           fooditem.description = Populator.sentences(2..10)
+          fooditem.status = [true,false]
           fooditem.price = [4.99, 19.95, 100]
           fooditem.chef = Populator.words(1..5).titleize
           fooditem.rating = [3,4,2,4,5,1,3,3]

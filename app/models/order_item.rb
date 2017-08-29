@@ -7,6 +7,11 @@ class OrderItem < ActiveRecord::Base
 	validate :order_present
 
 	before_save :finalize
+	after_save :update_order
+
+	def update_order
+		self.order.save
+	end
 
 	def unit_price
 	  if persisted?
@@ -23,7 +28,7 @@ class OrderItem < ActiveRecord::Base
 	private
 	def food_item_present
 	  if food_item.nil?
-	    errors.add(:product, "is not valid or is not active.")
+	    errors.add(:food_item, "is not valid or is not active.")
 	  end
 	end
 
@@ -37,4 +42,5 @@ class OrderItem < ActiveRecord::Base
 	  self[:unit_price] = unit_price
 	  self[:total_price] = quantity * self[:unit_price]
 	end
-	end
+
+end

@@ -3,11 +3,28 @@ class Order < ActiveRecord::Base
   belongs_to :delivery_boy
   has_many :order_items
 
-  before_create :set_order_status
-  before_save :update_subtotal
+  after_create :set_order_status
+  before_save :update_subtotal, :update_shipping, :update_tax, :update_total
+
 
   def subtotal
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
+  end
+
+  def total
+    subtotal + shipping + tax
+  end
+
+  def tax
+    return 0
+  end
+
+  def shipping_charge
+    charge = 0
+    if subtotal < 100
+      charge = 20
+    end
+    charge
   end
 
 	private
@@ -18,5 +35,17 @@ class Order < ActiveRecord::Base
 	  def update_subtotal
 	    self[:subtotal] = subtotal
 	  end
+
+    def update_shipping
+      self[:shipping] = shipping_charge
+    end
+
+    def update_tax
+      self[:tax] = tax
+    end
+
+    def update_total
+      self[:total] = total
+    end
 
 end

@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :time_slots
 
   devise_for :users
-  resources :food_items
-  resource :cart, only: [:show]
+  resources :food_items, only: [:index]
+  resource :carts, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
