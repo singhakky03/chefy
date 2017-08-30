@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
-  # get 'order_items/create'
-
-  # get 'order_items/update'
-
-  # get 'order_items/destroy'
-
-  # get 'carts/show'
 
   resources :time_slots
+  resources :checkout 
+  resources :addresses
 
   devise_for :users
   resources :food_items, only: [:index]
   resource :carts, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
+
+  get 'thankyou', to: 'checkout#place_order'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

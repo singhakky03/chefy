@@ -1,0 +1,27 @@
+= form_for @address, :html => {:class => "form-horizontal"},  remote: true do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  .form-group
+    %label.control-label.col-sm-2{:for => "address1"} Address Line 1:
+    .col-sm-8
+      = f.text_field :address_line1, :class => "form-control", :placeholder => "Enter Address"
+  .form-group
+    %label.control-label.col-sm-2{:for => "address2"} Address Line 2:
+    .col-sm-8
+      = f.text_field :address_line2, :class => "form-control", :placeholder => "Enter Address"
+  .form-group
+    %label.control-label.col-sm-2{:for => "city"} City:
+    .col-sm-8
+      = f.text_field :city, :class => "form-control", :placeholder => "City"
+  .form-group
+    %label.control-label.col-sm-2{:for => "state"} State:
+    .col-sm-8
+      = f.text_field :state, :class => "form-control", :placeholder => "State"
+  .form-group
+    %label.control-label.col-sm-2{:for => "pincode"} Pincode:
+    .col-sm-8
+      = f.text_field :pincode, :class => "form-control", :placeholder => "Pincode"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .btn-group
+        = f.submit "Add", class: "btn btn-primary"
+   		

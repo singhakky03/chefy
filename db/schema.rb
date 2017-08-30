@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827100249) do
+ActiveRecord::Schema.define(version: 20170829200606) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.string   "address_type",  limit: 255
+    t.string   "address_line1", limit: 255
+    t.string   "address_line2", limit: 255
+    t.string   "city",          limit: 255
+    t.string   "pincode",       limit: 255
+    t.string   "state",         limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "delivery_boys", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -62,6 +74,14 @@ ActiveRecord::Schema.define(version: 20170827100249) do
   end
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string   "pay_type",    limit: 255
+    t.decimal  "paid_amount",             precision: 10
+    t.integer  "order_id",    limit: 4
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
 
   create_table "time_slots", force: :cascade do |t|
     t.datetime "from"

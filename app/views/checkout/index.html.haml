@@ -1,0 +1,16 @@
+.well
+  .row
+    - if !current_user.addresses.present?
+      .col-xs-12.text-right
+        = link_to "Add Address", new_address_path, class: "btn btn-info " 
+    - @addresses.each do |address|
+      .row
+        .col-xs-12
+          %h4 Address:
+          %p= "#{address.address_line1}, #{address.address_line2}, #{address.city},  #{address.state}, #{address.pincode}"
+.col-xs-12.text-right
+  = link_to "Place Order", thankyou_path, class: "btn btn-info " 
+
+
+
+      

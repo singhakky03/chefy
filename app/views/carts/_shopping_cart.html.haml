@@ -23,3 +23,6 @@
       %h4.text-right
         Total:
         %span{:style => "color: green"}= number_to_currency current_order.total
+.container
+  .row
+    = link_to "Checkout", checkout_index_path, class: "btn btn-danger" 
