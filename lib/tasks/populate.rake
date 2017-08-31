@@ -28,9 +28,9 @@ namespace :db do
         OrderStatus.create! id: 4, name: "Cancelled"
 
         DeliveryBoy.create! id: 1, name: "Ramensh", contact: "9765431567"
-        DeliveryBoy.create! id: 2, name: "Suresh", contact: "9765431567"
-        DeliveryBoy.create! id: 3, name: "Deepak", contact: "9765431567"
-        DeliveryBoy.create! id: 4, name: "Mohan", contact: "9765431567"
+        DeliveryBoy.create! id: 2, name: "Suresh", contact: "9765433237"
+        DeliveryBoy.create! id: 3, name: "Deepak", contact: "9245431567"
+        DeliveryBoy.create! id: 4, name: "Mohan", contact: "9709431567"
 
   end
 end
