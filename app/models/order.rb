@@ -2,6 +2,8 @@ class Order < ActiveRecord::Base
   belongs_to :order_status
   belongs_to :delivery_boy
   has_many :order_items
+  belongs_to :address
+  belongs_to :user
 
   after_create :set_order_status
   before_save :update_subtotal, :update_shipping, :update_tax, :update_total
@@ -27,9 +29,18 @@ class Order < ActiveRecord::Base
     charge
   end
 
+  def order_placed
+    self.update_column('order_status_id', 3)
+  end
+
+  def delivery_boy
+    delivery_boy_id = DeliveryBoy.pluck(:id).sample
+    self.update_column('delivery_boy_id', delivery_boy_id)
+  end
+
 	private
 	  def set_order_status
-	    self.order_status_id = 1
+	    self.update_column('order_status_id', 1)
 	  end
 
 	  def update_subtotal

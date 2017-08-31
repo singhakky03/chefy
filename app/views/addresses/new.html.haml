@@ -1,6 +1,10 @@
 = form_for @address, :html => {:class => "form-horizontal"},  remote: true do |f|
   = f.hidden_field :user_id, value: current_user.id
   .form-group
+    %label.control-label.col-sm-2{:for => "address_type"} Address Type:
+    .col-sm-8
+      = f.text_field :address_type, :class => "form-control", :placeholder => "Address Type"
+  .form-group
     %label.control-label.col-sm-2{:for => "address1"} Address Line 1:
     .col-sm-8
       = f.text_field :address_line1, :class => "form-control", :placeholder => "Enter Address"
@@ -24,4 +28,5 @@
     .col-sm-offset-2.col-sm-10
       .btn-group
         = f.submit "Add", class: "btn btn-primary"
+
    		

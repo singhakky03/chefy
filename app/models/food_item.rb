@@ -2,5 +2,5 @@ class FoodItem < ActiveRecord::Base
 	has_many :time_slots
 	has_many :order_items
 
-  default_scope { where(status: true) }
+    #default_scope { where(status: true) }
 end

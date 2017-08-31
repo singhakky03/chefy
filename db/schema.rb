@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829200606) do
+ActiveRecord::Schema.define(version: 20170831013209) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170829200606) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.integer  "delivery_boy_id", limit: 4
+    t.integer  "user_id",         limit: 4
   end
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
