@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :order_status
   belongs_to :delivery_boy
-  has_many :order_items
+  has_many :order_items, :dependent => :delete_all
   belongs_to :address
   belongs_to :user
 

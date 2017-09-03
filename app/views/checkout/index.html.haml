@@ -3,13 +3,16 @@
     .col-xs-12.text-right
       = link_to "Add Address", new_address_path, class: "btn btn-info " 
     %h4 Address:
-    %h5 Select address where to delivered order 
-    - @addresses.each do |address|
-      .row
-        .col-xs-12.offset3
-          %input{:name => "address", :type => "radio", :value => "#{address.id}"}/
-          %h4= address.address_type.capitalize
-          %p= "#{address.address_line1}, #{address.address_line2}, #{address.city},  #{address.state}, #{address.pincode}"
+    - if @addresses.present?
+      %h5 Select address where to delivered order 
+      - @addresses.each do |address|
+        .row
+          .col-xs-12.offset3
+            %input{:name => "address", :type => "radio", :value => "#{address.id}"}/
+            %h4= address.address_type.capitalize
+            %p= "#{address.address_line1}, #{address.address_line2}, #{address.city},  #{address.state}, #{address.pincode}"
+    - else
+      %h5.text-center Add addres atleast one address for delivery 
 .col-xs-12.text-right#plaOrder.orderPlace
   = link_to "Place Order", thankyou_path, class: "btn btn-info orderThanks" 
 

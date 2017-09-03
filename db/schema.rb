@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831013209) do
+ActiveRecord::Schema.define(version: 20170903154044) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -33,14 +33,23 @@ ActiveRecord::Schema.define(version: 20170831013209) do
   end
 
   create_table "food_items", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "price",       limit: 4
-    t.string   "chef",        limit: 255
-    t.integer  "rating",      limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "status",      limit: 1
+    t.string   "name",         limit: 255
+    t.text     "description",  limit: 65535
+    t.integer  "price",        limit: 4
+    t.string   "chef",         limit: 255
+    t.integer  "rating",       limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "status",       limit: 1
+    t.integer  "locality_id",  limit: 4
+    t.integer  "time_slot_id", limit: 4
+  end
+
+  create_table "localities", force: :cascade do |t|
+    t.string   "pincode",    limit: 255
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -89,10 +98,8 @@ ActiveRecord::Schema.define(version: 20170831013209) do
     t.datetime "to"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "food_item_id", limit: 4
+    t.string   "slot",       limit: 255
   end
-
-  add_index "time_slots", ["food_item_id"], name: "index_time_slots_on_food_item_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

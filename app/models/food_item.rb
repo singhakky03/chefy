@@ -1,6 +1,8 @@
 class FoodItem < ActiveRecord::Base
-	has_many :time_slots
-	has_many :order_items
+	
+	belongs_to :locality
+	belongs_to :time_slot
+	has_many :order_items, :dependent => :delete_all
 
     #default_scope { where(status: true) }
 end

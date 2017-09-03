@@ -1,23 +1,101 @@
 .row
-  - @food_items.each do |food_item|   
-    .col-xs-12.col-sm-6.col-md-3
-      .col-item
-        .post-img-content
-          %img.img-responsive{:src => "http://placehold.it/350x260"}/
-        .info
-          .row
-            .price.col-md-6
-              %h5 #{food_item.name.truncate(25)}
-              %h5.price-text-color 
-                = "Price: #{food_item.price}"
-            .rating.hidden-sm.col-md-6
-              %h5.price-text-color 
-                = "Rating: #{food_item.rating}"
-          .separator.clear-left
-            = form_for @order_item, remote: true do |f|
-              .input-group
-                = f.number_field :quantity, value: 1, class: "form-control", min: 1
-                .input-group-btn
-                  = f.hidden_field :food_item_id, value: food_item.id
-                  = f.submit "Add to Cart", class: "btn btn-primary"
-          .clearfix
+  %p.text-center
+    = form_tag root_path, :method => 'get' do
+      %p
+        = text_field_tag :pincode, params[:pincode]
+        = submit_tag "Search", :pincode => nil
+  - if @food_items.present?
+    %h3.text-center Morning
+    - @morning.each do |food_item|   
+      .col-xs-12.col-sm-6.col-md-3
+        .col-item
+          .post-img-content
+            %img.img-responsive{:src => "http://placehold.it/350x260"}/
+          .info
+            .row
+              .price.col-md-6
+                %h5 #{food_item.name.truncate(25)}
+                %h5.price-text-color 
+                  = "Price: #{food_item.price}"
+              .rating.hidden-sm.col-md-6
+                %h5.price-text-color 
+                  = "Rating: #{food_item.rating}"
+            .separator.clear-left
+              = form_for @order_item, remote: true do |f|
+                .input-group
+                  = f.number_field :quantity, value: 1, class: "form-control", min: 1
+                  .input-group-btn
+                    = f.hidden_field :food_item_id, value: food_item.id
+                    = f.submit "Add to Cart", class: "btn btn-primary"
+            .clearfix
+    %h3.text-center Afternoon
+    - @afternoon.each do |food_item|   
+      .col-xs-12.col-sm-6.col-md-3
+        .col-item
+          .post-img-content
+            %img.img-responsive{:src => "http://placehold.it/350x260"}/
+          .info
+            .row
+              .price.col-md-6
+                %h5 #{food_item.name.truncate(25)}
+                %h5.price-text-color 
+                  = "Price: #{food_item.price}"
+              .rating.hidden-sm.col-md-6
+                %h5.price-text-color 
+                  = "Rating: #{food_item.rating}"
+            .separator.clear-left
+              = form_for @order_item, remote: true do |f|
+                .input-group
+                  = f.number_field :quantity, value: 1, class: "form-control", min: 1
+                  .input-group-btn
+                    = f.hidden_field :food_item_id, value: food_item.id
+                    = f.submit "Add to Cart", class: "btn btn-primary"
+            .clearfix
+    %h3.text-center Evening
+    - @evening.each do |food_item|   
+      .col-xs-12.col-sm-6.col-md-3
+        .col-item
+          .post-img-content
+            %img.img-responsive{:src => "http://placehold.it/350x260"}/
+          .info
+            .row
+              .price.col-md-6
+                %h5 #{food_item.name.truncate(25)}
+                %h5.price-text-color 
+                  = "Price: #{food_item.price}"
+              .rating.hidden-sm.col-md-6
+                %h5.price-text-color 
+                  = "Rating: #{food_item.rating}"
+            .separator.clear-left
+              = form_for @order_item, remote: true do |f|
+                .input-group
+                  = f.number_field :quantity, value: 1, class: "form-control", min: 1
+                  .input-group-btn
+                    = f.hidden_field :food_item_id, value: food_item.id
+                    = f.submit "Add to Cart", class: "btn btn-primary"
+            .clearfix
+    %h3.text-center Night
+    - @night.each do |food_item|   
+      .col-xs-12.col-sm-6.col-md-3
+        .col-item
+          .post-img-content
+            %img.img-responsive{:src => "http://placehold.it/350x260"}/
+          .info
+            .row
+              .price.col-md-6
+                %h5 #{food_item.name.truncate(25)}
+                %h5.price-text-color 
+                  = "Price: #{food_item.price}"
+              .rating.hidden-sm.col-md-6
+                %h5.price-text-color 
+                  = "Rating: #{food_item.rating}"
+            .separator.clear-left
+              = form_for @order_item, remote: true do |f|
+                .input-group
+                  = f.number_field :quantity, value: 1, class: "form-control", min: 1
+                  .input-group-btn
+                    = f.hidden_field :food_item_id, value: food_item.id
+                    = f.submit "Add to Cart", class: "btn btn-primary"
+            .clearfix
+  - else
+    %p.text-center  No Food Item present at this time
