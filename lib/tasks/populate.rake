@@ -43,8 +43,8 @@ namespace :db do
     end
 
 
-    TimeSlot.where(to: nil).delete_all
-    Locality.where(pincode: nil).delete_all
+    #TimeSlot.where(to: nil).delete_all
+    #Locality.where(pincode: nil).delete_all
   end
 end
 
