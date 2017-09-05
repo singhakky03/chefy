@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   has_many :order_items, :dependent => :delete_all
   belongs_to :address
   belongs_to :user
+  has_one :payment_method
 
   after_create :set_order_status
   before_save :update_subtotal, :update_shipping, :update_tax, :update_total
@@ -42,6 +43,13 @@ class Order < ActiveRecord::Base
 	  def set_order_status
 	    self.update_column('order_status_id', 1)
 	  end
+
+    def order_payment
+      payment = self.payment_method.new
+      payment.pay_type = PaymentMethod::PAY_TYPE[1]
+      payment.paid_amount = self.total
+      payment.save
+    end
 
 	  def update_subtotal
 	    self[:subtotal] = subtotal

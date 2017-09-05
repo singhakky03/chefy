@@ -13,6 +13,7 @@ class CheckoutController < ApplicationController
 	  	@order = current_order
 	  	@order.order_placed
 	  	@order.delivery_boy
+      @order.order_payment
 	  	session.delete(:order_id)
   	else
   		@order = current_user.orders.last

@@ -21,12 +21,9 @@
             %ul.list-inline
               %li.cart-item
                 = render 'layouts/cart_item'
-                //%i.fa.fa-2x.fa-shopping-cart
-                %lavel#cart-badge.badge.badge-warning 
-              / %li
-              /   %a{:href => "/login"} Вход
-              / %li
-              /   %a{:href => "/register"} Регистрация
+              - if current_user.present?
+                %li
+                  = link_to('Logout', destroy_user_session_path, method: :delete)
       = yield
 
 
