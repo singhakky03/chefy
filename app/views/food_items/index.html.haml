@@ -3,7 +3,7 @@
     = form_tag root_path, :method => 'get' do
       %p
         =# text_field_tag :pincode, params[:pincode]
-        = select_tag "pincode", options_for_select(Locality.pluck(:name, :pincode).uniq.compact.map{|o| [o[0].humanize,o[1]] })
+        = select_tag "pincode", options_for_select(Locality.where('pincode IS NOT NULL').pluck(:name, :pincode).uniq.compact.map{|o| [o[0].humanize,o[1]] })
         = submit_tag "Search", :pincode => nil
   - if @food_items.present?
     %h3.text-center Morning
